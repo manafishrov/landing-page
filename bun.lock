@@ -31,7 +31,7 @@
         "prettier-plugin-tailwindcss": "^0.6.14",
         "tailwindcss": "^4.1.12",
         "tw-animate-css": "^1.3.7",
-        "tw-clamp-css": "^2.0.1",
+        "tw-clamp-css": "2.0.4",
         "typescript": "^5.9.2",
         "typescript-eslint": "^8.40.0",
         "vite": "^7.1.2",
@@ -651,7 +651,7 @@
 
     "tw-animate-css": ["tw-animate-css@1.3.7", "", {}, "sha512-lvLb3hTIpB5oGsk8JmLoAjeCHV58nKa2zHYn8yWOoG5JJusH3bhJlF2DLAZ/5NmJ+jyH3ssiAx/2KmbhavJy/A=="],
 
-    "tw-clamp-css": ["tw-clamp-css@2.0.1", "", { "peerDependencies": { "tailwind-merge": "^3.3.1", "tailwindcss": "^4.1.11" } }, "sha512-dA9PmR0Zwku0KOgFJVXSB/Tdh7e2r8Ta+7OBIlDJVjPQiyfg60etAuXmahW5HTjP/om9WSzolxEXc9ysw2q6Iw=="],
+    "tw-clamp-css": ["tw-clamp-css@2.0.4", "", { "peerDependencies": { "tailwind-merge": "^3.3.1", "tailwindcss": "^4.1.11" } }, "sha512-s+0VUoR7whds0FlKzQNhcddocVv+BXokiOL0lN1ZbVoo0t6P5FUC4bMP2CdfqAMQ2uojkI99Q/Pb1AZQ4UcAyA=="],
 
     "type-check": ["type-check@0.4.0", "", { "dependencies": { "prelude-ls": "^1.2.1" } }, "sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew=="],
 
