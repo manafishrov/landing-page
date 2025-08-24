@@ -2,10 +2,6 @@
 @import 'tw-animate-css';
 @import 'tailwind-scrollbar-hide/v4';
 @plugin 'tw-clamp-css/dynamic';
-@plugin 'tailwind-scrollbar' {
-  nocompatible: true;
-  preferredstrategy: 'pseudoelements';
-}
 @custom-variant dark (&:is(.dark *));
 
 :root {

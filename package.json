@@ -47,6 +47,7 @@
     "globals": "^16.3.0",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwind-scrollbar-hide": "^4.0.0",
     "tailwindcss": "^4.1.12",
     "tw-animate-css": "^1.3.7",
     "tw-clamp-css": "2.0.4",
