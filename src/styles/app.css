@@ -1,6 +1,10 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'tailwind-scrollbar-hide/v4';
+@import '@fontsource-variable/exo';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/inter/wght-italic';
+@import '@fontsource/chakra-petch/500';
 @plugin 'tw-clamp-css/dynamic';
 @custom-variant dark (&:is(.dark *));
 
@@ -73,6 +77,15 @@
 }
 
 @theme inline {
+  --font-sans:
+    'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-heading:
+    'Exo Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-branding:
+    'Chakra Petch', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -116,5 +129,13 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
   }
 }
