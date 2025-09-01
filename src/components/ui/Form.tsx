@@ -7,6 +7,7 @@ import { Button, type buttonVariants } from '@/components/ui/Button';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/Label';
+import { PhoneInput } from '@/components/ui/PhoneInput';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/RadioGroup';
 import {
   Select,
@@ -446,6 +447,44 @@ function CheckboxField({
   );
 }
 
+type PhoneFieldProps = Omit<
+  React.ComponentProps<typeof PhoneInput>,
+  'value' | 'onChange' | 'onBlur'
+> & {
+  label?: string;
+  labelSibling?: React.ReactNode;
+  fieldSuffix?: React.ReactNode;
+  description?: string;
+};
+
+function PhoneField({
+  className,
+  label,
+  fieldSuffix,
+  labelSibling,
+  description,
+  ...props
+}: PhoneFieldProps) {
+  const field = useFieldContext<string>();
+
+  return (
+    <BaseField
+      label={label}
+      fieldSuffix={fieldSuffix}
+      labelSibling={labelSibling}
+      className={className}
+      description={description}
+    >
+      <PhoneInput
+        value={field.state.value}
+        onChange={(value) => field.handleChange(value)}
+        onBlur={field.handleBlur}
+        {...props}
+      />
+    </BaseField>
+  );
+}
+
 type SubmitButtonProps = Omit<React.ComponentProps<typeof Button>, 'type'> &
   VariantProps<typeof buttonVariants> & {
     loading?: boolean;
@@ -493,6 +532,7 @@ const { useAppForm } = createFormHook({
     SelectField,
     RadioGroupField,
     CheckboxField,
+    PhoneField,
   },
   formComponents: {
     SubmitButton,
