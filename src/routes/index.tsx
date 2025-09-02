@@ -1,16 +1,23 @@
+import { ApplicationForm } from '@/components/ApplicationForm';
 import { Logo } from '@/components/Logo';
 
 export default function LandingPage() {
   return (
-    <div className='my-16 flex h-full w-full flex-col items-center gap-8'>
+    <div className='my-8 flex h-full w-full flex-col items-center gap-8 sm:my-16'>
       <Logo />
       <section className='max-w-3xl p-8'>
-        <h1 className='mb-8 text-4xl font-extrabold'>
+        <h1 className='mb-8 text-3xl font-extrabold sm:text-4xl'>
           MAKE YOUR OWN 3D-PRINTED UNDERWATER DRONE
         </h1>
         <p className='mb-4 text-blue-900'>
-          Apply at the <strong>bottom of this page</strong> to become a beta
-          tester!
+          Apply at the{' '}
+          <a
+            href='#application-form'
+            className='font-semibold text-blue-800 underline'
+          >
+            bottom of this page
+          </a>{' '}
+          to become a beta tester!
         </p>
         <p className='mb-4'>
           If you found this page, you are most likely interested in making your
@@ -71,6 +78,12 @@ export default function LandingPage() {
           chronological order, so by applying now you maximize your chances of
           becoming a beta-tester.
         </p>
+      </section>
+      <section id='application-form' className='max-w-3xl p-8'>
+        <h2 className='mb-8 scroll-m-20 text-2xl font-bold sm:text-3xl'>
+          APPLICATION FORM
+        </h2>
+        <ApplicationForm />
       </section>
     </div>
   );

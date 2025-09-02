@@ -2,8 +2,7 @@ function Logo() {
   return (
     <div className='flex items-center gap-2'>
       <svg
-        width={64}
-        height={64}
+        className='h-8 w-8 sm:h-16 sm:w-16'
         viewBox='0 0 1024 1024'
         aria-label='Manafish Logo'
         role='img'
@@ -37,7 +36,9 @@ function Logo() {
           strokeWidth='60'
         />
       </svg>
-      <span className='font-branding text-7xl font-medium'>MANAFISH</span>
+      <span className='font-branding text-4xl font-medium sm:text-7xl'>
+        MANAFISH
+      </span>
     </div>
   );
 }
