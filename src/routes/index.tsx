@@ -5,7 +5,7 @@ export default function LandingPage() {
   return (
     <div className='my-8 flex h-full w-full flex-col items-center gap-8 sm:my-16'>
       <Logo />
-      <section className='max-w-3xl p-8'>
+      <section className='w-full max-w-3xl p-8'>
         <h1 className='mb-8 text-3xl font-extrabold sm:text-4xl'>
           MAKE YOUR OWN 3D-PRINTED UNDERWATER DRONE
         </h1>
@@ -79,7 +79,7 @@ export default function LandingPage() {
           becoming a beta-tester.
         </p>
       </section>
-      <section id='application-form' className='max-w-3xl p-8'>
+      <section id='application-form' className='w-full max-w-3xl p-8'>
         <h2 className='mb-8 scroll-m-20 text-2xl font-bold sm:text-3xl'>
           APPLICATION FORM
         </h2>
