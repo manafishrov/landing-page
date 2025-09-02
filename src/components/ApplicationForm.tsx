@@ -1,4 +1,5 @@
 import { revalidateLogic } from '@tanstack/react-form';
+import { isValidPhoneNumber } from 'libphonenumber-js';
 import { z } from 'zod';
 
 import { useAppForm } from '@/components/ui/Form';
@@ -6,10 +7,10 @@ import { useAppForm } from '@/components/ui/Form';
 const formSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   email: z.string().email({ message: 'Invalid email address' }),
-  phoneNumber: z.string().min(10, 'Phone number is required'),
+  phoneNumber: z.string().refine(isValidPhoneNumber, 'Invalid phone number'),
   instagramHandle: z.string(),
   has3dPrinter: z.boolean(),
-  hasSolderingIron: z.boolean(),
+  hasSolderingEquipment: z.boolean(),
   whyDoYouWantToBeATester: z.string().min(1, 'This field is required'),
   howDidYouHearAboutUs: z.string().min(1, 'This field is required'),
   acceptRecievingEmail: z.boolean().refine((val) => val === true, {
@@ -29,7 +30,7 @@ function ApplicationForm() {
       phoneNumber: '',
       instagramHandle: '',
       has3dPrinter: false,
-      hasSolderingIron: false,
+      hasSolderingEquipment: false,
       whyDoYouWantToBeATester: '',
       howDidYouHearAboutUs: '',
       acceptRecievingEmail: false,
@@ -46,16 +47,30 @@ function ApplicationForm() {
     >
       <form.AppForm>
         <form.AppField name='name'>
-          {(field) => <field.TextField label='Name' placeholder='Your name' />}
+          {(field) => (
+            <field.TextField
+              label='Name'
+              placeholder='Your name'
+              autoComplete='name'
+            />
+          )}
         </form.AppField>
         <form.AppField name='email'>
           {(field) => (
-            <field.TextField label='Email' placeholder='you@email.com' />
+            <field.TextField
+              label='Email'
+              placeholder='you@email.com'
+              autoComplete='email'
+            />
           )}
         </form.AppField>
         <form.AppField name='phoneNumber'>
           {(field) => (
-            <field.PhoneField label='Phone Number' placeholder='+1234567890' />
+            <field.PhoneField
+              label='Phone Number'
+              placeholder='+1234567890'
+              autoComplete='tel'
+            />
           )}
         </form.AppField>
         <form.AppField name='instagramHandle'>
@@ -67,11 +82,13 @@ function ApplicationForm() {
           )}
         </form.AppField>
         <form.AppField name='has3dPrinter'>
-          {(field) => <field.CheckboxField label='Do you have a 3D printer?' />}
-        </form.AppField>
-        <form.AppField name='hasSolderingIron'>
           {(field) => (
-            <field.CheckboxField label='Do you have a soldering iron?' />
+            <field.CheckboxField label='Do you have access to a 3D printer?' />
+          )}
+        </form.AppField>
+        <form.AppField name='hasSolderingEquipment'>
+          {(field) => (
+            <field.CheckboxField label='Do you have access to soldering equipment?' />
           )}
         </form.AppField>
         <form.AppField name='whyDoYouWantToBeATester'>
@@ -95,7 +112,7 @@ function ApplicationForm() {
             <field.CheckboxField label='I accept receiving emails about my application' />
           )}
         </form.AppField>
-        <form.SubmitButton className='w-24'>Submit</form.SubmitButton>
+        <form.SubmitButton>Submit</form.SubmitButton>
       </form.AppForm>
     </form>
   );
