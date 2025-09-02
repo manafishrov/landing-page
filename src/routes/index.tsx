@@ -79,7 +79,10 @@ export default function LandingPage() {
           becoming a beta-tester.
         </p>
       </section>
-      <section id='application-form' className='w-full max-w-3xl p-8'>
+      <section
+        id='application-form'
+        className='w-full max-w-3xl px-8 pt-8 pb-32'
+      >
         <h2 className='mb-8 scroll-m-20 text-2xl font-bold sm:text-3xl'>
           APPLICATION FORM
         </h2>
