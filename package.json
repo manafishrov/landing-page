@@ -28,6 +28,7 @@
     "@tanstack/react-form": "^1.19.2",
     "cmdk": "^1.1.1",
     "lucide-react": "^0.541.0",
+    "posthog-js": "^1.261.6",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-phone-number-input": "^3.4.12",

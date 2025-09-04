@@ -32,7 +32,11 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Build project
-        run: bun run build
+        run: |
+          echo "VITE_PUBLIC_POSTHOG_KEY=${{ secrets.VITE_PUBLIC_POSTHOG_KEY }}" >> .env
+          echo "VITE_PUBLIC_POSTHOG_HOST=${{ secrets.VITE_PUBLIC_POSTHOG_HOST }}" >> .env
+          echo "VITE_PUBLIC_GOOGLE_FORM_URL_BASE64=${{ secrets.VITE_PUBLIC_GOOGLE_FORM_URL_BASE64 }}" >> .env
+          bun run build
 
       - name: Upload build output
         uses: actions/upload-pages-artifact@v3

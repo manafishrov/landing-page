@@ -1,5 +1,6 @@
 import { revalidateLogic } from '@tanstack/react-form';
 import { isValidPhoneNumber } from 'libphonenumber-js';
+import { usePostHog } from 'posthog-js/react';
 import { useEffect, useState } from 'react';
 import { z } from 'zod';
 
@@ -16,13 +17,16 @@ import { useAppForm } from '@/components/ui/Form';
 
 const formSchema = z.object({
   name: z.string().min(1, 'Name is required'),
-  email: z.string().email({ message: 'Invalid email address' }),
+  email: z.email('Invalid email address'),
   phoneNumber: z.string().refine(isValidPhoneNumber, 'Invalid phone number'),
   instagramHandle: z.string(),
   has3dPrinter: z.boolean(),
   hasSolderingEquipment: z.boolean(),
   whyDoYouWantToBeATester: z.string().min(1, 'This field is required'),
-  howDidYouHearAboutUs: z.string().min(1, 'This field is required'),
+  howDidYouHearAboutUs: z.enum(
+    ['tiktok', 'instagram', 'youtube', 'linkedin', 'email', 'friend', 'other'],
+    'Please select how you heard about us',
+  ),
   acceptRecievingEmail: z.boolean().refine((val) => val === true, {
     message: 'You must accept to receive email',
   }),
@@ -33,6 +37,7 @@ const formSchema = z.object({
 });
 
 function ApplicationForm() {
+  const posthog = usePostHog();
   const [canSubmit, setCanSubmit] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
 
@@ -67,7 +72,7 @@ function ApplicationForm() {
 
       const hiddenForm = document.createElement('form');
       hiddenForm.action = atob(
-        'aHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vZm9ybXMvZC9lLzFGQUlwUUxTZTBDZUpyX3BSQVdzRVdRMnpfUVl5WWhDdU55eTAyNURGSl9zbHRFc0N2WTdxdVN3L2Zvcm1SZXNwb25zZQ==',
+        import.meta.env.VITE_PUBLIC_GOOGLE_FORM_URL_BASE64 as string,
       );
       hiddenForm.method = 'POST';
       hiddenForm.target = 'hidden_iframe';
@@ -101,6 +106,14 @@ function ApplicationForm() {
       document.body.appendChild(hiddenForm);
       hiddenForm.submit();
       document.body.removeChild(hiddenForm);
+
+      posthog?.capture('landing_page_application_fom_submitted', {
+        name: value.name,
+        email: value.email,
+        has3dPrinter: value.has3dPrinter,
+        hasSolderingEquipment: value.hasSolderingEquipment,
+        howDidYouHearAboutUs: value.howDidYouHearAboutUs,
+      });
 
       setShowDialog(true);
       form.reset();
@@ -175,9 +188,17 @@ function ApplicationForm() {
           </form.AppField>
           <form.AppField name='howDidYouHearAboutUs'>
             {(field) => (
-              <field.TextAreaField
+              <field.SelectField
                 label='How did you hear about us?'
-                placeholder='Tell us how you discovered Manafish'
+                options={[
+                  { value: 'tiktok', label: 'TikTok' },
+                  { value: 'instagram', label: 'Instagram' },
+                  { value: 'youtube', label: 'YouTube' },
+                  { value: 'linkedin', label: 'LinkedIn' },
+                  { value: 'email', label: 'Email' },
+                  { value: 'friend', label: 'Friend' },
+                  { value: 'other', label: 'Other' },
+                ]}
               />
             )}
           </form.AppField>
