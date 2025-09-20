@@ -64,10 +64,10 @@ export default function LandingPage() {
         </p>
         <p className='mb-4'>
           All of our beta testers will get the kit for a special early bird
-          price of <span className='font-semibold'>$980</span>, which is{' '}
+          price of <span className='font-semibold'>$1200</span>, which is{' '}
           <strong>far cheaper</strong> than what it will be priced at the
           official launch (launch price will be{' '}
-          <span className='font-semibold'>$1,400+</span>). If you apply at the
+          <span className='font-semibold'>$1,800+</span>). If you apply at the
           bottom of this page we will contact you with more information once the
           kits are ready.
         </p>
